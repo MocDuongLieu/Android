@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".common.activity.MainActivity">
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:id="@+id/drawerlayout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height"
+                app:titleTextColor="@color/white"
+
+                android:background="@drawable/primary_color_background"
+                android:id="@+id/toolBar"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:stretchColumns="*">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="20dp"
+                            >
+
+                            <ImageButton
+                                android:id="@+id/imgBtnHeartHealth"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:backgroundTint="@color/maunen"
+                                android:elevation="20dp"
+                                android:src="@drawable/heart_health" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="@dimen/label_medium"
+                                android:text="Sức khỏe tim mạch" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="20dp">
+
+                            <ImageButton
+                                android:id="@+id/imgBtnBMI"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:backgroundTint="@color/maunen"
+                                android:src="@drawable/bmi"
+                                android:elevation="20dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="@dimen/label_medium"
+                                android:text="Chỉ số BMI" />
+
+                        </LinearLayout>
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:stretchColumns="*">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="20dp">
+
+                            <ImageButton
+                                android:id="@+id/imgBtnCalories"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/calories"
+                                android:backgroundTint="@color/maunen"
+                                android:elevation="20dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="@dimen/label_medium"
+                                android:text="Lượng kcal" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="20dp"
+                           >
+                            <ImageButton
+                                android:id="@+id/imgBtnQualitySleep"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/quality_sleep"
+                                android:backgroundTint="@color/maunen"
+                                android:elevation="20dp"
+                                />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="@dimen/label_medium"
+                                android:text="Chất lượng giấc ngủ" />
+
+                        </LinearLayout>
+
+
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:stretchColumns="*">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="20dp">
+                            <ImageButton
+                                android:id="@+id/imgBtnExercisePlan"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/excercise_plan"
+                                android:elevation="20dp"
+                                android:backgroundTint="@color/maunen"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="@dimen/label_medium"
+                                android:text="Kế hoạch tập luyện" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="20dp">
+
+                            <ImageButton
+                                android:id="@+id/imgBtnStatistic"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/statistic"
+                                android:elevation="20dp"
+                                android:backgroundTint="@color/maunen"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="@dimen/label_medium"
+                                android:text="Thống kê" />
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:id="@+id/navigationView"
+            app:headerLayout="@layout/cm_nav_header"
+            app:menu="@menu/more_activity_menu"
+            >
+        </com.google.android.material.navigation.NavigationView>
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</LinearLayout>

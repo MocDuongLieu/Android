@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/img"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/img"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication2"
+        tools:targetApi="31">
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.common.activity.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.common.activity.RegisterActivity"
+            android:exported="false"/>
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.common.activity.MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.BMIIndexActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.BMIIndexListActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.HeartHealthActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.HeartHealthListActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.CaloriesListActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.CaloriesActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.RemindWaterActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.QualitySleepListActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.QualitySleepActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.statistic.CaloriesStatistic"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.statistic.BMIIndexStatisticActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.statistic.ExercisePlanStatistic"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.statistic.QualitySleepStatisticActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.HealthStatisticActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.common.activity.ChangePasswordActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.statistic.HeartHealthStatisticActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.ExercisePlanActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.CreateProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.ShowProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.EditProfileActivity"
+            android:exported="false" />
+        <receiver
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.receiver.ReminderReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
