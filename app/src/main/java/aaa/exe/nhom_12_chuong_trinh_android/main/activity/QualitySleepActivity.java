@@ -43,7 +43,9 @@ public class QualitySleepActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nct_activity_quality_sleep);
-        mapping();
+
+        mapping(); // ánh xạ
+
         getShowTimeStart();
         getShowTimeFinish();
         getShowDate();
@@ -165,7 +167,7 @@ public class QualitySleepActivity extends AppCompatActivity {
                 String status = "";
                 String createdDate = tvDate.getText().toString();
                 if (startSleep.isEmpty() && finishSleep.isEmpty()){
-                    Toast.makeText(QualitySleepActivity.this,"Must enter startSleep and finishSleep ",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QualitySleepActivity.this,"Phải nhập thời gian ngủ và thời gian thức dậy ",Toast.LENGTH_SHORT).show();
                 }
                 // Kiểm tra nếu tvDate trống rỗng, gán giá trị là ngày hiện tại
                 if (createdDate == null || createdDate.isEmpty()) {
@@ -212,7 +214,7 @@ public class QualitySleepActivity extends AppCompatActivity {
                     showAdviceDialog(status, sleepDuration,minHours,maxHours);
                 } else {
                     // Xử lý lỗi từ calculateSleepDurationInHours, ví dụ như hiển thị thông báo lỗi
-                    Toast.makeText(QualitySleepActivity.this, "Invalid format time", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QualitySleepActivity.this, "Lỗi thời gian", Toast.LENGTH_SHORT).show();
                 }
             }
         });
