@@ -24,6 +24,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Kế hoạch tập luyện"
+            android:textStyle="bold"
             android:textSize="@dimen/title_large"
             android:textColor="@color/white"/>
 
@@ -38,7 +39,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_list"
+            android:layout_height="566dp"
 
             tools:ignore="MissingConstraints" />
 

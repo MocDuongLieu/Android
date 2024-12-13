@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Nhắc nhở uống nước"
+            android:textStyle="bold"
             android:gravity="center"
             android:textSize="@dimen/title_large"
             android:textColor="@color/white"/>
@@ -62,7 +63,7 @@
     <ListView
         android:id="@+id/lvWater"
         android:layout_width="match_parent"
-        android:layout_height="462dp"
+        android:layout_height="497dp"
         android:layout_marginTop="10dp" />
 
     <TableRow

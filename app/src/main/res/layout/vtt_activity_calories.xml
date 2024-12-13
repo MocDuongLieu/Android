@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Lượng kcal"
+            android:textStyle="bold"
             android:gravity="center"
             android:textSize="@dimen/title_large"
             android:textColor="@color/white"/>
@@ -32,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Mẫu thêm"
+        android:text="Thêm thông tin"
         android:gravity="center"
         android:textSize="@dimen/label_large"
         android:layout_marginBottom="20dp"/>

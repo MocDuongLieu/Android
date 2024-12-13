@@ -28,6 +28,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Chỉ số BMI"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/title_large" />
         </TableRow>

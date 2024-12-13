@@ -21,14 +21,16 @@
                 android:layout_marginLeft="10dp"
                 android:layout_width="35dp"
                 android:layout_height="35dp" />
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textSize="@dimen/title_large"
                 android:text="Chất lượng giấc ngủ"
-                android:textColor="@color/white"/>
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_large" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"

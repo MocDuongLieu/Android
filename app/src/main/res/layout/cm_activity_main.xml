@@ -40,73 +40,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_margin="20dp"
+                            android:background="@drawable/shape_around"
                             >
 
                             <ImageButton
                                 android:id="@+id/imgBtnHeartHealth"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
+                                android:layout_width="155dp"
+                                android:layout_height="140dp"
+                                android:background="@android:color/transparent"
                                 android:backgroundTint="@color/maunen"
-                                android:elevation="20dp"
                                 android:src="@drawable/heart_health" />
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:gravity="center"
-                                android:textSize="@dimen/label_medium"
-                                android:text="Sức khỏe tim mạch" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_margin="20dp">
-
-                            <ImageButton
-                                android:id="@+id/imgBtnBMI"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:backgroundTint="@color/maunen"
-                                android:src="@drawable/bmi"
-                                android:elevation="20dp"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textSize="@dimen/label_medium"
-                                android:text="Chỉ số BMI" />
-
-                        </LinearLayout>
-                    </TableRow>
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:stretchColumns="*">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_margin="20dp">
-
-                            <ImageButton
-                                android:id="@+id/imgBtnCalories"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/calories"
-                                android:backgroundTint="@color/maunen"
-                                android:elevation="20dp"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textSize="@dimen/label_medium"
-                                android:text="Lượng kcal" />
+                                android:background="@android:color/transparent"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:text="Sức khỏe tim mạch"
+                                android:textSize="16sp" />
 
                         </LinearLayout>
                         <LinearLayout
@@ -114,22 +67,87 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_margin="20dp"
-                           >
+                            android:background="@drawable/shape_around">
+
                             <ImageButton
                                 android:id="@+id/imgBtnQualitySleep"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/quality_sleep"
+                                android:layout_width="155dp"
+                                android:layout_height="140dp"
+                                android:background="@android:color/transparent"
                                 android:backgroundTint="@color/maunen"
-                                android:elevation="20dp"
-                                />
+                                android:src="@drawable/quality_sleep" />
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:gravity="center"
-                                android:textSize="@dimen/label_medium"
-                                android:text="Chất lượng giấc ngủ" />
+                                android:background="@android:color/transparent"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:text="Chất lượng giấc ngủ"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+
+
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:stretchColumns="*">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:background="@drawable/shape_around"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/imgBtnCalories"
+                                android:layout_width="155dp"
+                                android:layout_height="140dp"
+                                android:backgroundTint="@color/maunen"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/calories" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@android:color/transparent"
+                                android:gravity="center"
+                                android:text="Lượng kcal"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="20dp"
+                            android:background="@drawable/shape_around">
+
+                            <ImageButton
+                                android:id="@+id/imgBtnBMI"
+                                android:layout_width="155dp"
+                                android:layout_height="140dp"
+                                android:background="@android:color/transparent"
+                                android:backgroundTint="@color/maunen"
+                                android:src="@drawable/bmi" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:gravity="center"
+                                android:background="@android:color/transparent"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:text="Chỉ số BMI"
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
@@ -144,21 +162,26 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_margin="20dp">
+                            android:layout_margin="20dp"
+                            android:background="@drawable/shape_around">
+
                             <ImageButton
                                 android:id="@+id/imgBtnExercisePlan"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/excercise_plan"
-                                android:elevation="20dp"
-                                android:backgroundTint="@color/maunen"/>
+                                android:layout_width="155dp"
+                                android:layout_height="140dp"
+                                android:background="@android:color/transparent"
+                                android:backgroundTint="@color/maunen"
+                                android:src="@drawable/excercise_plan" />
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:gravity="center"
-                                android:textSize="@dimen/label_medium"
-                                android:text="Kế hoạch tập luyện" />
+                                android:background="@android:color/transparent"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:text="Kế hoạch tập luyện"
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
@@ -166,22 +189,26 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_margin="20dp">
+                            android:layout_margin="20dp"
+                            android:background="@drawable/shape_around">
 
                             <ImageButton
                                 android:id="@+id/imgBtnStatistic"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/statistic"
-                                android:elevation="20dp"
-                                android:backgroundTint="@color/maunen"/>
+                                android:layout_width="155dp"
+                                android:layout_height="140dp"
+                                android:background="@android:color/transparent"
+                                android:backgroundTint="@color/maunen"
+                                android:src="@drawable/statistic" />
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:gravity="center"
-                                android:textSize="@dimen/label_medium"
-                                android:text="Thống kê" />
+                                android:text="Thống kê"
+                                android:background="@android:color/transparent"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="16sp" />
                         </LinearLayout>
                     </TableRow>
                 </TableLayout>

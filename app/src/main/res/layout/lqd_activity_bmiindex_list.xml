@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Chỉ số BMI"
+            android:textStyle="bold"
             android:gravity="center"
             android:textSize="@dimen/title_large"
             android:textColor="@color/white"/>
@@ -31,15 +32,17 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="15dp"
         android:text="Danh sách chỉ số BMI:"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textSize="@dimen/label_large"/>
 
     <ListView
         android:id="@+id/lvBI"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_list" />
+        android:layout_height="508dp"
+  />
 
     <TableRow
         android:layout_width="match_parent"
