@@ -41,7 +41,7 @@ public class RemindWaterActivity extends AppCompatActivity {
 
     ListView lvWater;
 
-    ImageButton imgCreate,imgUpdate;
+    ImageButton imgCreate, imgUpdate;
 
     RemindWaterDAO remindWaterDAO;
 
@@ -50,6 +50,7 @@ public class RemindWaterActivity extends AppCompatActivity {
     RemindWaterAdapter arrayAdapter;
     Context context;
     int user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +80,8 @@ public class RemindWaterActivity extends AppCompatActivity {
             }
         });
     }
-    public void mapping(){
+
+    public void mapping() {
         remindWaterDAO = new RemindWaterDAO(this);
         tvTarget = findViewById(R.id.tvTarget);
         progressDrinkW = findViewById(R.id.progressDrinkW);
@@ -94,14 +96,15 @@ public class RemindWaterActivity extends AppCompatActivity {
 
 
         list = remindWaterDAO.getAllInDay(getCurrentDate());
-        arrayAdapter = new RemindWaterAdapter(context,list);
+        arrayAdapter = new RemindWaterAdapter(context, list);
         lvWater.setAdapter(arrayAdapter);
 
         int totalConsumed = getTotalConsumed(); // Hàm này cần được triển khai để tính tổng lượng nước đã uống
         float target = calculateTarget();
-        progressDrinkW.setMax((int)target);
+        progressDrinkW.setMax((int) target);
         progressDrinkW.setProgress(totalConsumed);
     }
+
     private void autoReminder() {
         // Lấy dữ liệu từ cơ sở dữ liệu
         float frequency = remindWaterDAO.getFrequencyFromDatabase();
@@ -123,6 +126,7 @@ public class RemindWaterActivity extends AppCompatActivity {
             }
         }
     }
+
     private void scheduleReminder(long interval) {
         // Sử dụng AlarmManager để đặt lịch nhắc nhở
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -135,21 +139,14 @@ public class RemindWaterActivity extends AppCompatActivity {
         // Tạo Intent để gửi broadcast khi nhắc nhở được kích hoạt
         Intent intent = new Intent(RemindWaterActivity.this, ReminderReceiver.class);
         intent.setAction("MyAction");
-        intent.putExtra("remain",remain);
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(
-//                this,
-//                0,
-//                intent,
-//                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
-//        );
+        intent.putExtra("remain", remain);
+        //   PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 this,
                 0,
                 intent,
-                PendingIntent.FLAG_UPDATE_CURRENT // Thử flag này thay vì FLAG_IMMUTABLE
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
         // Thiết lập lịch nhắc nhở cứ sau mỗi khoảng thời gian interval
@@ -158,8 +155,9 @@ public class RemindWaterActivity extends AppCompatActivity {
         calendar.setTimeInMillis(System.currentTimeMillis());
         Log.d("Nhắc nhở chuông", "Thiết lập lại chuông");
 
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + interval,interval, pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + interval, interval, pendingIntent);
     }
+
     private void cancelReminder() {
         Intent intent = new Intent(RemindWaterActivity.this, ReminderReceiver.class);
         intent.setAction("MyAction");
@@ -171,6 +169,7 @@ public class RemindWaterActivity extends AppCompatActivity {
         // Hủy bỏ cả PendingIntent
         pendingIntent.cancel();
     }
+
     private void showUpdateFrequencyDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Tần suất cập nhật");
@@ -197,6 +196,9 @@ public class RemindWaterActivity extends AppCompatActivity {
 
                     // Cập nhật giao diện
                     updateUI();
+
+                    // Thông báo sau khi tạo chuông thành công
+                    Toast.makeText(context, "Bạn đã tạo chuông với tần suất " + frequency + " phút", Toast.LENGTH_SHORT).show();
                 }
             }
         });
