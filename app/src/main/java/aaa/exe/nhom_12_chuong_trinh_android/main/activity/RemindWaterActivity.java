@@ -112,8 +112,8 @@ public class RemindWaterActivity extends AppCompatActivity {
 
             int totalConsumed = getTotalConsumed();
             float target = calculateTarget();
-            Log.d("Nhắc nhở gỡ lỗi", "totalConsumed: " + totalConsumed);
-            Log.d("Nhắc nhở gỡ lỗi", "target: " + target);
+            Log.d("Nhắc nhở gỡ lỗi", "Tổng số đã uống: " + totalConsumed);
+            Log.d("Nhắc nhở gỡ lỗi", "tiêu thụ: " + target);
             if (totalConsumed < target) {
                 // Đặt lịch nhắc nhở sử dụng AlarmManager
                 scheduleReminder(reminderInterval);
@@ -136,7 +136,14 @@ public class RemindWaterActivity extends AppCompatActivity {
         Intent intent = new Intent(RemindWaterActivity.this, ReminderReceiver.class);
         intent.setAction("MyAction");
         intent.putExtra("remain",remain);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
 
         // Thiết lập lịch nhắc nhở cứ sau mỗi khoảng thời gian interval
         // Bắt đầu từ thời điểm hiện tại

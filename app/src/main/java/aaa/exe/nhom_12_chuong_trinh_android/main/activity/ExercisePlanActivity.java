@@ -72,63 +72,62 @@ public class ExercisePlanActivity extends AppCompatActivity implements RecyclerD
                 ImageButton btnFinish = dialogView.findViewById(R.id.btnFinish);
                 getDefaultInfor(exerStart);
                 getDefaultInfor(exerFinish);
-                btnStart.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDatePickerDialog(exerStart);
-                    }
-                });
-                btnFinish.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDatePickerDialog(exerFinish);
-                    }
-                });
+
+                btnStart.setOnClickListener(v1 -> showDatePickerDialog(exerStart));
+                btnFinish.setOnClickListener(v12 -> showDatePickerDialog(exerFinish));
+
                 builder.setView(dialogView);
-                builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {;
+                builder.setPositiveButton("Đồng ý", (dialogInterface, i) -> {
+                    try {
+                        String name = exerName.getText().toString().trim();
+                        String type = exerType.getText().toString().trim();
+                        String start = exerStart.getText().toString().trim();
+                        String finish = exerFinish.getText().toString().trim();
+                        String goalStr = exerGoal.getText().toString().trim();
 
-                        String name = exerName.getText().toString();
-                        String type = exerType.getText().toString();
-                        String start = exerStart.getText().toString();
-                        String finish = exerFinish.getText().toString();
-                        String goal = exerGoal.getText().toString();
-                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                        Date date = new Date();
-                        int flag = 1;
-                        ExercisePlan exercisePlan = new ExercisePlan(name, type, start, finish,0,"Chưa hoàn thành", formatter.format(date),Integer.parseInt(goal) ,0);
-                        if (Integer.parseInt(goal) <= 0 || !Validate.containDigits(name) || !Validate.containsSpecialCharacters(name)
-                                || !Validate.containDigits(type) || !Validate.containsSpecialCharacters(type)
-                                || !Validate.validateDateFormat(start) || !Validate.validateDateFormat(finish)
-                                || !Validate.isDate1GreaterThanDate2(start,formatter.format(date))
-                                || !Validate.isDate1GreaterThanDate2(finish, start)
-                                || "".equals(name) || "".equals(type) || "".equals(start) || "".equals(finish) || "".equals(goal)
-                        ) {
+                        // Kiểm tra dữ liệu đầu vào
+                        if (name.isEmpty() || type.isEmpty() || start.isEmpty() || finish.isEmpty() || goalStr.isEmpty()) {
+                            throw new IllegalArgumentException("Vui lòng nhập đầy đủ thông tin.");
+                        }
 
-                            Toast.makeText(ExercisePlanActivity.this,"Không đúng định dạng", Toast.LENGTH_LONG).show();
-                            flag = 0;
+                        int goal = Integer.parseInt(goalStr);
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                        Date currentDate = new Date();
+
+                        if (goal <= 0) {
+                            throw new IllegalArgumentException("Mục tiêu phải lớn hơn 0.");
                         }
-                        if(flag == 1){
-                            exercisePlanDao.addExercisePlan(exercisePlan);
-                            exercisePlans.clear();
-                            exercisePlans.addAll(exercisePlanDao.getAllExercisePlan());
-                            recyclerDataAdapter.notifyDataSetChanged();
+                        if (!Validate.validateDateFormat(start) || !Validate.validateDateFormat(finish)) {
+                            throw new IllegalArgumentException("Ngày không đúng định dạng (yyyy-MM-dd).");
                         }
+                        if (!Validate.isDate1GreaterThanDate2(start, formatter.format(currentDate))) {
+                            throw new IllegalArgumentException("Ngày bắt đầu phải lớn hơn hoặc bằng ngày hiện tại.");
+                        }
+                        if (!Validate.isDate1GreaterThanDate2(finish, start)) {
+                            throw new IllegalArgumentException("Ngày kết thúc phải lớn hơn ngày bắt đầu.");
+                        }
+
+                        // Thêm kế hoạch tập luyện
+                        ExercisePlan exercisePlan = new ExercisePlan(name, type, start, finish, 0, "Chưa hoàn thành", formatter.format(currentDate), goal, 0);
+                        exercisePlanDao.addExercisePlan(exercisePlan);
+                        exercisePlans.clear();
+                        exercisePlans.addAll(exercisePlanDao.getAllExercisePlan());
+                        recyclerDataAdapter.notifyDataSetChanged();
+                        Toast.makeText(ExercisePlanActivity.this, "Thêm kế hoạch thành công!", Toast.LENGTH_SHORT).show();
+
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(ExercisePlanActivity.this, "Mục tiêu phải là số nguyên hợp lệ.", Toast.LENGTH_LONG).show();
+                    } catch (IllegalArgumentException e) {
+                        Toast.makeText(ExercisePlanActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                // Hiển thị AlertDialog
+
+                builder.setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss());
                 builder.create().show();
             }
         });
     }
-    public void getWidget(){
+        public void getWidget(){
         btnAdd = findViewById(R.id.btnAdd);
     }
     @Override
@@ -161,6 +160,8 @@ public class ExercisePlanActivity extends AppCompatActivity implements RecyclerD
         AlertDialog.Builder builder = new AlertDialog.Builder(ExercisePlanActivity.this);
         builder.setTitle("Sửa tập luyện: " + exercisePlan.getName() + "điểm:  "+ exercisePlan.getScore());
         View dialogView2 = getLayoutInflater().inflate(R.layout.vpd_edit_exercise_plan, null);
+
+        // anh xa
         EditText exerName = dialogView2.findViewById(R.id.editNamess);
         EditText exerType = dialogView2.findViewById(R.id.editTypess);
         TextView exerStart = dialogView2.findViewById(R.id.txtStartTimes);
@@ -169,6 +170,8 @@ public class ExercisePlanActivity extends AppCompatActivity implements RecyclerD
         EditText exerScore = dialogView2.findViewById(R.id.editScoress);
         ImageButton btnStarts = dialogView2.findViewById(R.id.btnStarts);
         ImageButton btnFinishs = dialogView2.findViewById(R.id.btnFinishs);
+
+        //cap nhat
         exerName.setText(exercisePlan.getName());
         exerType.setText(exercisePlan.getType());
         exerStart.setText(exercisePlan.getStartTime());
