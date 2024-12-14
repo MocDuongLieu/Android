@@ -167,7 +167,7 @@ public class QualitySleepActivity extends AppCompatActivity {
                 String status = "";
                 String createdDate = tvDate.getText().toString();
                 if (startSleep.isEmpty() && finishSleep.isEmpty()){
-                    Toast.makeText(QualitySleepActivity.this,"Phải nhập thời gian ngủ và thời gian thức dậy ",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QualitySleepActivity.this,"Bạn phải nhập thời gian ngủ và thời gian thức dậy ",Toast.LENGTH_SHORT).show();
                 }
                 // Kiểm tra nếu tvDate trống rỗng, gán giá trị là ngày hiện tại
                 if (createdDate == null || createdDate.isEmpty()) {
@@ -187,11 +187,7 @@ public class QualitySleepActivity extends AppCompatActivity {
                     // Thêm đối tượng QualitySleep vào cơ sở dữ liệu
                     qualitySleepDAO.insert(qualitySleep);
 
-                    // Xóa sạch các PlainText
-                    edtStart.setText("");
-                    edtFinish.setText("");
-                    tvDate.setText("");
-
+                    xoaDL();
                     int minHours, maxHours;
                     if (age < 6) {
                         minHours = 10;
@@ -219,6 +215,15 @@ public class QualitySleepActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void xoaDL() {
+        // Xóa sạch các PlainText
+        edtStart.setText("");
+        edtFinish.setText("");
+        tvDate.setText("");
+
+    }
+
     private float calculateSleepDurationInHours(String startSleep, String finishSleep) {
         try {
             // Định dạng để chuyển đổi chuỗi thành đối tượng Date

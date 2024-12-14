@@ -76,7 +76,7 @@ public class QualitySleepStatisticActivity extends AppCompatActivity {
             i++;
         }
 
-        BarDataSet dataSet = new BarDataSet(entries, "Hours");
+        BarDataSet dataSet = new BarDataSet(entries, "Số Giờ");
 
 // Tùy chỉnh màu sắc của cột
         dataSet.setColor(Color.BLUE);
@@ -112,7 +112,7 @@ public class QualitySleepStatisticActivity extends AppCompatActivity {
         result.addAll(statisticDAO.getQualitySleepPercentStatus(startDateString,finishDateString));
         HashMap<String, Integer> labelColors = new HashMap<>();
         labelColors.put("Ngủ ít", Color.BLUE);
-        labelColors.put("Đủ", Color.GREEN);
+        labelColors.put("Ngủ đủ", Color.GREEN);
         labelColors.put("Ngủ quá nhiều",Color.RED);
         ArrayList<Integer> colors = new ArrayList<>();
         ArrayList<String> labels = new ArrayList<>();
@@ -177,7 +177,7 @@ public class QualitySleepStatisticActivity extends AppCompatActivity {
                     createBarChart(startDateString,finishDateString);
                     createPieChart(startDateString,finishDateString);
                 } else {
-                    Toast.makeText(this,"Invalid period",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Chưa đủ dữ liệu",Toast.LENGTH_LONG).show();
                 }
 
             }, startDateCalendar.get(Calendar.YEAR), startDateCalendar.get(Calendar.MONTH), startDateCalendar.get(Calendar.DAY_OF_MONTH));
