@@ -17,6 +17,6 @@
     <dimen name="toolbar_height">65dp</dimen>
 
     <!--Kích thước của hình-->
-    <dimen name="width_khung">130dp</dimen>
-    <dimen name="height_khung">110dp</dimen>
+    <dimen name="width_khung">140dp</dimen>
+    <dimen name="height_khung">120dp</dimen>
 </resources>
