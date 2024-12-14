@@ -140,9 +140,9 @@ public class RemindWaterActivity extends AppCompatActivity {
         Intent intent = new Intent(RemindWaterActivity.this, ReminderReceiver.class);
         intent.setAction("MyAction");
         intent.putExtra("remain", remain);
-        //   PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+          PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+         pendingIntent = PendingIntent.getBroadcast(
                 this,
                 0,
                 intent,
