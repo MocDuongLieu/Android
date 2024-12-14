@@ -15,4 +15,8 @@
     <!-- Kích thức độ dài cho listview -->
     <dimen name="height_list">456sp</dimen>
     <dimen name="toolbar_height">65dp</dimen>
+
+    <!--Kích thước của hình-->
+    <dimen name="width_khung">130dp</dimen>
+    <dimen name="height_khung">110dp</dimen>
 </resources>

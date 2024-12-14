@@ -30,7 +30,8 @@
     </TableRow>
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -47,8 +48,8 @@
 
                 <ImageButton
                     android:id="@+id/imgBtnHeartHealth"
-                    android:layout_width="155dp"
-                    android:layout_height="130dp"
+                    android:layout_width="@dimen/width_khung"
+                    android:layout_height="@dimen/height_khung"
                     android:background="@android:color/transparent"
                     android:backgroundTint="@color/maunen"
                     android:src="@drawable/heart_health" />
@@ -60,7 +61,7 @@
                     android:text="Sức khỏe tim mạch"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:textSize="@dimen/label_medium" />
+                    android:textSize="@dimen/content_medium" />
 
             </LinearLayout>
             <LinearLayout
@@ -72,8 +73,8 @@
 
                 <ImageButton
                     android:id="@+id/imgBtnQualitySleep"
-                    android:layout_width="155dp"
-                    android:layout_height="130dp"
+                    android:layout_width="@dimen/width_khung"
+                    android:layout_height="@dimen/height_khung"
                     android:background="@android:color/transparent"
                     android:backgroundTint="@color/maunen"
                     android:elevation="20dp"
@@ -86,7 +87,7 @@
                     android:text="Chất lượng giấc ngủ"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:textSize="@dimen/label_medium" />
+                    android:textSize="@dimen/content_medium" />
 
             </LinearLayout>
 
@@ -106,8 +107,8 @@
 
                 <ImageButton
                     android:id="@+id/imgBtnCalories"
-                    android:layout_width="155dp"
-                    android:layout_height="130dp"
+                    android:layout_width="@dimen/width_khung"
+                    android:layout_height="@dimen/height_khung"
                     android:src="@drawable/calories"
                     android:backgroundTint="@color/maunen"
                     android:background="@android:color/transparent"
@@ -122,7 +123,7 @@
                     android:text="Lượng Kcal"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:textSize="@dimen/label_medium" />
+                    android:textSize="@dimen/content_medium" />
 
             </LinearLayout>
             <LinearLayout
@@ -134,8 +135,8 @@
 
                 <ImageButton
                     android:id="@+id/imgBtnBMI"
-                    android:layout_width="155dp"
-                    android:layout_height="130dp"
+                    android:layout_width="@dimen/width_khung"
+                    android:layout_height="@dimen/height_khung"
                     android:src="@drawable/bmi"
                     android:background="@android:color/transparent"
                     android:backgroundTint="@color/maunen"
@@ -148,7 +149,7 @@
                     android:text="Chỉ số BMI"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:textSize="@dimen/label_medium" />
+                    android:textSize="@dimen/content_medium" />
 
             </LinearLayout>
 
@@ -166,8 +167,8 @@
                 android:background="@drawable/shape_around">
                 <ImageButton
                     android:id="@+id/imgBtnExercisePlan"
-                    android:layout_width="155dp"
-                    android:layout_height="130dp"
+                    android:layout_width="@dimen/width_khung"
+                    android:layout_height="@dimen/height_khung"
                     android:src="@drawable/excercise_plan"
                     android:background="@android:color/transparent"
                     android:backgroundTint="@color/maunen"
@@ -181,7 +182,7 @@
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:text="Kế hoạch tập luyện"
-                    android:textSize="@dimen/label_medium" />
+                    android:textSize="@dimen/content_medium" />
 
             </LinearLayout>
         </TableRow>
