@@ -138,11 +138,18 @@ public class RemindWaterActivity extends AppCompatActivity {
         intent.putExtra("remain",remain);
 //        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+//                this,
+//                0,
+//                intent,
+//                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+//        );
+
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 this,
                 0,
                 intent,
-                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+                PendingIntent.FLAG_UPDATE_CURRENT // Thử flag này thay vì FLAG_IMMUTABLE
         );
 
         // Thiết lập lịch nhắc nhở cứ sau mỗi khoảng thời gian interval
