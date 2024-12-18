@@ -33,10 +33,10 @@ public class CaloriesListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vtt_activity_calories_list);
-        mapping();
+        getWidget();
 
     }
-    public void mapping(){
+    public void getWidget(){
         caloriesDAO = new CaloriesDAO(this);
 
         btnHome = findViewById(R.id.btnHome);

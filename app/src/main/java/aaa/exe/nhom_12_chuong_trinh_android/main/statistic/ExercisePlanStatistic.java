@@ -33,7 +33,7 @@ public class ExercisePlanStatistic extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vtt_activity_exercise_plan_statistic);
-        mapping();
+        getWidget();
         statisticDAO = new StatisticDAO(this);
         createPieChart(null,null);
         btnShowDatePicker.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +43,7 @@ public class ExercisePlanStatistic extends AppCompatActivity {
             }
         });
     }
-    public void mapping(){
+    public void getWidget(){
         txtStart = findViewById(R.id.txtStart);
         txtFinish = findViewById(R.id.txtFinish);
         btnShowDatePicker = findViewById(R.id.showDatePicker);

@@ -36,12 +36,12 @@ public class QualitySleepListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nct_activity_quality_sleep_list);
-        mapping();
+        getWidget();
         qualitySleepDAO = new QualitySleepDAO(this);
         getSelectLV();
         backHome();
     }
-    public void mapping(){
+    public void getWidget(){
         lvQuality = findViewById(R.id.lvQuality);
         btnHome = findViewById(R.id.btnHome);
         btnRemove = findViewById(R.id.btnRemove);

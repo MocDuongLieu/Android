@@ -38,9 +38,9 @@ public class CaloriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vtt_activity_calories);
-        mapping();
+        getWidget();
     }
-    public void mapping(){
+    public void getWidget(){
         profileDAO = new ProfileDAO(this);
         dbHandler = new CaloriesDAO(this);
         imgBtnDate = findViewById(R.id.imgDate);
