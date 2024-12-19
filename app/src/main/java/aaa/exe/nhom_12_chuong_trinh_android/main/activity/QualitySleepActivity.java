@@ -44,7 +44,7 @@ public class QualitySleepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nct_activity_quality_sleep);
 
-        mapping(); // ánh xạ
+        getWidget(); // ánh xạ
 
         getShowTimeStart();
         getShowTimeFinish();
@@ -52,7 +52,7 @@ public class QualitySleepActivity extends AppCompatActivity {
         getProcessAdd();
         getShowListA();
     }
-    public void mapping(){
+    public void getWidget(){
         profileDAO = new ProfileDAO(this);
         imgStart = findViewById(R.id.imgStart);
         imgFinish = findViewById(R.id.imgFinish);

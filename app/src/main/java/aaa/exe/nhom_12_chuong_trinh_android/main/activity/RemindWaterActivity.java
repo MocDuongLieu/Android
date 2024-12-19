@@ -55,7 +55,7 @@ public class RemindWaterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nct_activity_remind_water);
-        mapping();
+        getWidget();
         startNewDay();
         updateTvTarget();
         // Tự động đặt lịch nhắc nhở khi Activity được tạo
@@ -81,7 +81,7 @@ public class RemindWaterActivity extends AppCompatActivity {
         });
     }
 
-    public void mapping() {
+    public void getWidget() {
         remindWaterDAO = new RemindWaterDAO(this);
         tvTarget = findViewById(R.id.tvTarget);
         progressDrinkW = findViewById(R.id.progressDrinkW);

@@ -44,7 +44,7 @@ public class BMIIndexStatisticActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vtt_activity_bmiindex_statistic);
-        mapping();
+        getWidget();
         statisticDAO = new StatisticDAO(this);
         createBarChart(null,null);
         createPieChart(null,null);
@@ -55,7 +55,7 @@ public class BMIIndexStatisticActivity extends AppCompatActivity {
             }
         });
     }
-    public void mapping(){
+    public void getWidget(){
         txtStart = findViewById(R.id.txtStart);
         txtFinish = findViewById(R.id.txtFinish);
         btnShowDatePicker = findViewById(R.id.showDatePicker);

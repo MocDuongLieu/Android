@@ -21,9 +21,9 @@ public class HealthStatisticActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vtt_activity_health_statistic);
-        mapping();
+        getWidget();
     }
-    public void mapping(){
+    public void getWidget(){
         btnHeart = findViewById(R.id.imgBtnHeartHealth);
         btnBMI = findViewById(R.id.imgBtnBMI);
         btnSleep = findViewById(R.id.imgBtnQualitySleep);

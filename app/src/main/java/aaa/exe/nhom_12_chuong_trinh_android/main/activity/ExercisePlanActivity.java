@@ -139,7 +139,6 @@ public class ExercisePlanActivity extends AppCompatActivity implements RecyclerD
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menuSup){
             AlertDialog.Builder builder = new AlertDialog.Builder(ExercisePlanActivity.this);
-            builder.setTitle("Hỗ trợ");
             View dialogView = getLayoutInflater().inflate(R.layout.vpd_support, null);
             builder.setView(dialogView);
             builder.setNegativeButton("Đồng ý", new DialogInterface.OnClickListener() {

@@ -42,7 +42,7 @@ public class HeartHealthStatisticActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vtt_activity_heart_health_statistic);
-        mapping();
+        getWidget();
         statisticDAO = new StatisticDAO(this);
         createLineChart(null,null);
         createPieChart(null,null);
@@ -53,7 +53,7 @@ public class HeartHealthStatisticActivity extends AppCompatActivity {
             }
         });
     }
-    public void mapping(){
+    public void getWidget(){
         txtStart = findViewById(R.id.txtStart);
         txtFinish = findViewById(R.id.txtFinish);
         btnShowDatePicker = findViewById(R.id.showDatePicker);

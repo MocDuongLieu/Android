@@ -75,7 +75,7 @@ public class StatisticDAO {
                 result.add(newSS);
             }
         } catch (Exception e) {
-            Log.e("PieChart", e+"");
+            Log.e("Biểu đồ", e+"");
         } finally {
             // Đảm bảo đóng cursor và SQLiteDatabase
             if (cursor != null) {
