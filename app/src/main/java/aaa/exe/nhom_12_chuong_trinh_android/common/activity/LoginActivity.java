@@ -2,6 +2,8 @@ package aaa.exe.nhom_12_chuong_trinh_android.common.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,13 +21,14 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     EditText edtUserName, edtPassword;
     UserDAO userDAO;
+    boolean isPasswordVisible = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cm_activity_login);
-        mapping();
+        ax();
     }
-    public void mapping(){
+    public void ax(){
         btnLogin = findViewById(R.id.btnLogin);
         edtPassword = findViewById(R.id.edtPassword);
         edtUserName = findViewById(R.id.edtUserName);
@@ -34,6 +37,28 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 login();
+            }
+        });
+        edtPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    if(motionEvent.getRawX() >= (edtPassword.getRight() - edtPassword.getCompoundDrawables()[2].getBounds().width())){
+                        isPasswordVisible = !isPasswordVisible;
+                        if (isPasswordVisible) {
+                            edtPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_open, 0); // Icon mắt mở
+                        } else {
+                            edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_close, 0); // Icon mắt đóng
+                        }
+
+                        // Đưa con trỏ văn bản về cuối
+                        edtPassword.setSelection(edtPassword.getText().length());
+                        return true;
+                    }
+                }
+                return false;
             }
         });
     }
@@ -80,4 +105,5 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 }
