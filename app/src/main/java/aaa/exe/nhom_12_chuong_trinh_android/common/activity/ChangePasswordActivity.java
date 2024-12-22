@@ -19,9 +19,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cm_activity_change_password);
-        getWidget();
+        ax();
     }
-    public void getWidget(){
+    public void ax(){
         userDAO = new UserDAO(this);
         editEmail = findViewById(R.id.editEmail);
         editOldPassword = findViewById(R.id.editOldPass);
