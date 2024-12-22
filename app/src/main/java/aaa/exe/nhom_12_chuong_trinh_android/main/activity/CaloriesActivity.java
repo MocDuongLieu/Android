@@ -79,7 +79,7 @@ public class CaloriesActivity extends AppCompatActivity {
         }
     }
     public boolean valid(float intake, float burned){
-        if(intake<1000 || burned<1000){
+        if(intake < 1000 || burned < 1000){
             return false;
         }
         else{
@@ -124,13 +124,13 @@ public class CaloriesActivity extends AppCompatActivity {
     }
     private String recommendation(String status, float intake, float burned){
         float difference = intake - burned;
-        String recommend = " Hôm nay lượng calo bạn tiêu thụ là"+status;
+        String recommend = "Hôm nay lượng calo bạn tiêu thụ là "+status;
         if(difference>500){
             recommend+=" và lượng calo bạn đốt cháy quá thấp. Hãy tập thể dục nhiều hơn để tránh nguy cơ béo phì. ";
         }
         else if(difference<250){
             recommend+=" và lượng calo bạn đốt cháy quá cao. " +
-                    " Hãy chú ý đến cường độ tập luyện của bạn. Bạn cần bổ sung thêm "+(250-difference)+" kcal bây giờ.";
+                    "Hãy chú ý đến cường độ tập luyện của bạn. Bạn cần bổ sung thêm "+(250-difference)+" kcal bây giờ.";
         }
         else{
             recommend+=" và chênh lệch calo của bạn đã được cân bằng. Hãy cố gắng duy trì thói quen sống lành mạnh. ";
