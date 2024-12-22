@@ -71,6 +71,7 @@
         android:hint="mật khẩu"
         android:layout_marginLeft="15sp"
         android:textSize="@dimen/content_large"
+        android:drawableEnd="@drawable/eye_close"
         android:inputType="textPassword" />
 
     <TextView
@@ -89,6 +90,7 @@
         android:ems="10"
         android:inputType="textPassword"
         android:textSize="@dimen/content_large"
+        android:drawableEnd="@drawable/eye_close"
         android:layout_marginLeft="15sp"
         android:hint="Điền lại mật khẩu"/>
 

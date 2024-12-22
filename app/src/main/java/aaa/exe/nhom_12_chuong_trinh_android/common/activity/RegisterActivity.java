@@ -1,6 +1,8 @@
 package aaa.exe.nhom_12_chuong_trinh_android.common.activity;
 
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,11 +18,57 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editUserName, editPassword, editConfirm, editEmail;
     Button btnSignUp;
     UserDAO userDAO;
+    boolean isPasswordVisible = false;
+    boolean isPasswordVisible1 = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cm_activity_register);
         getWidget();
+        editPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    if(motionEvent.getRawX() >= (editPassword.getRight() - editPassword.getCompoundDrawables()[2].getBounds().width())){
+                        isPasswordVisible = !isPasswordVisible;
+                        if (isPasswordVisible) {
+                            editPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            editPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_open, 0); // Icon mắt mở
+                        } else {
+                            editPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            editPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_close, 0); // Icon mắt đóng
+                        }
+
+                        // Đưa con trỏ văn bản về cuối
+                        editPassword.setSelection(editPassword.getText().length());
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        editConfirm.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    if(motionEvent.getRawX() >= (editConfirm.getRight() - editConfirm.getCompoundDrawables()[2].getBounds().width())){
+                        isPasswordVisible1 = !isPasswordVisible1;
+                        if (isPasswordVisible1) {
+                            editConfirm.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            editConfirm .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_open, 0); // Icon mắt mở
+                        } else {
+                            editConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            editConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_close, 0); // Icon mắt đóng
+                        }
+
+                        // Đưa con trỏ văn bản về cuối
+                        editConfirm.setSelection(editConfirm.getText().length());
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
     private void getWidget(){
         editUserName = findViewById(R.id.editUserName);
