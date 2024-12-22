@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cm_activity_main);
-        mapping();
+        getWidget();
         actionToolBar();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     // ánh xạ
-    public void mapping(){
+    public void getWidget(){
         toolbar = findViewById(R.id.toolBar);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigationView);
