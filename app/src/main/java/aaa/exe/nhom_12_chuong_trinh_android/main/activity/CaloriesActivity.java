@@ -55,37 +55,53 @@ public class CaloriesActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new doSomeThing());
         btnList.setOnClickListener(new doSomeThing());
     }
+    //Them moi
     public void addCalories(){
-        float intake = Float.parseFloat(edtIntake.getText().toString());
-        float burned = Float.parseFloat(edtBurned.getText().toString());
-        String date = txtDate.getText().toString();
-        if(date.equalsIgnoreCase("Now")){
-            date = getCurrentDateAsString();
+        if (edtIntake.getText().toString().isEmpty() || edtBurned.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Vui lòng nhập đầy đủ dữ liệu", Toast.LENGTH_SHORT).show();
+            return;
+        } else{
+            float intake = Float.parseFloat(edtIntake.getText().toString());
+            float burned = Float.parseFloat(edtBurned.getText().toString());
+            String date = txtDate.getText().toString();
+            if(date.equalsIgnoreCase("Now")){
+                date = getCurrentDateAsString();
+            }
+            String status = "";
+            if (valid(intake,burned)){
+                ArrayList<String> arrDiseases = new ArrayList<>();
+                arrDiseases.addAll(profileDAO.getDisease());
+                status = getStatusFromAgeGroup(intake,arrDiseases);
+                Calories calories = new Calories(intake,burned,status,date);
+                dbHandler.insert(calories);
+                edtIntake.setText("");
+                edtBurned.setText("");
+                txtDate.setText("Hiện tại");
+                showAdviceDialog(status,intake,burned);
+            }
+            else{
+                if(intake < 0) {
+                    Toast.makeText(this,"Kcal tiêu thụ (" + intake + ") Không hợp lý",Toast.LENGTH_LONG ).show();
+                    edtIntake.requestFocus();
+                    return;
+                } else if (burned < 0) {
+                    Toast.makeText(this,"Kcal đốt cháy (" + burned + ") Không hợp lý",Toast.LENGTH_LONG ).show();
+                    edtBurned.requestFocus();
+                    return;
+                }
+            }
         }
-        String status = "";
-        if (valid(intake,burned)){
-            ArrayList<String> arrDiseases = new ArrayList<>();
-            arrDiseases.addAll(profileDAO.getDisease());
-            status = getStatusFromAgeGroup(intake,arrDiseases);
-            Calories calories = new Calories(intake,burned,status,date);
-            dbHandler.insert(calories);
-            edtIntake.setText("");
-            edtBurned.setText("");
-            txtDate.setText("Hiện tại");
-            showAdviceDialog(status,intake,burned);
-        }
-        else{
-            Toast.makeText(this,"Dữ liệu không phù hợp",Toast.LENGTH_LONG).show();
-        }
+
     }
+    //Kiem tra validate kcal nhap
     public boolean valid(float intake, float burned){
-        if(intake < 1000 || burned < 1000){
+        if(intake < 0 || burned < 0) {
             return false;
-        }
-        else{
+        }else{
             return true;
         }
     }
+    //Xac dinh ho so: benh nen, gioi tinh va do tuoi
     public String getStatusFromAgeGroup(float intake, ArrayList<String> arrDiseases) {
         String priorityDisease = "Không có bệnh nền";
         String[] priority  = {"Rối loạn tâm thần", "Mệt mỏi", "Huyết áp cao", "Tiểu đường"};
@@ -113,27 +129,34 @@ public class CaloriesActivity extends AppCompatActivity {
         }
         return "";
     }
+    //Danh gia tinh trang kcal
     private String evaluateCaloriesStatus(float intake, float minNeed, float maxNeed) {
+        //Kcal tieu thu can >= kcal can toi thieu va <= kcal toi da thi hop ly
         if (intake >= minNeed && intake <= maxNeed) {
-            return "Cân bằng" ;
+            return "cân bằng" ;
         } else if (intake > maxNeed) {
-            return "Quá nhiều" ;
+            return "quá nhiều" ;
         } else {
-            return "Quá ít";
+            return "quá ít";
         }
     }
+    //Loi khuyen
     private String recommendation(String status, float intake, float burned){
+        //Chenh lech kcal
         float difference = intake - burned;
-        String recommend = "Hôm nay lượng calo bạn tiêu thụ là "+status;
-        if(difference>500){
-            recommend+=" và lượng calo bạn đốt cháy quá thấp. Hãy tập thể dục nhiều hơn để tránh nguy cơ béo phì. ";
+        String recommend = "Hôm nay lượng calo bạn tiêu thụ là " + status;
+        if(difference > 500){
+            recommend +="\nLượng calo bạn đốt cháy quá thấp. Hãy tập thể dục nhiều hơn để tránh nguy cơ béo phì. ";
         }
-        else if(difference<250){
-            recommend+=" và lượng calo bạn đốt cháy quá cao. " +
-                    "Hãy chú ý đến cường độ tập luyện của bạn. Bạn cần bổ sung thêm "+(250-difference)+" kcal bây giờ.";
+        else if(difference < 250){
+            recommend +="\nLượng calo bạn đốt cháy quá cao. " + "Hãy chú ý đến cường độ tập luyện của bạn. " +
+                    "\nBạn cần bổ sung thêm "+(250-difference)+" kcal bây giờ.";
         }
         else{
-            recommend+=" và chênh lệch calo của bạn đã được cân bằng. Hãy cố gắng duy trì thói quen sống lành mạnh. ";
+            recommend +="\nChênh lệch calo của bạn đã được cân bằng. Hãy cố gắng duy trì thói quen sống lành mạnh. ";
+        }
+        if(intake < 1000) {
+            recommend +="\nChú ý: Duy trì lượng kcal " + intake + " Không đảm bảo sức khỏe!";
         }
         return recommend;
     }
