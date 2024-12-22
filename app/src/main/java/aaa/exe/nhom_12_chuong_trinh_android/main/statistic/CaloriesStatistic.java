@@ -76,9 +76,9 @@ public class CaloriesStatistic extends AppCompatActivity {
             burnedBarEntries.add(new BarEntry(i,data.getCalories_burned()));
             dates.add(data.getCreated_date());
         }
-        BarDataSet barDataSet1 = new BarDataSet(intakeBarEntries,"Intake");
+        BarDataSet barDataSet1 = new BarDataSet(intakeBarEntries,"Nạp vào");
         barDataSet1.setColors(Color.BLUE);
-        BarDataSet barDataSet2 = new BarDataSet(burnedBarEntries,"Burned");
+        BarDataSet barDataSet2 = new BarDataSet(burnedBarEntries,"Đốt cháy");
         barDataSet2.setColors(Color.RED);
         BarData data = new BarData(barDataSet1,barDataSet2);
         barChart.setData(data);
