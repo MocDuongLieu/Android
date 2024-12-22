@@ -46,10 +46,10 @@ public class QualitySleepActivity extends AppCompatActivity {
 
         getWidget(); // ánh xạ
 
-        getShowTimeStart();
-        getShowTimeFinish();
-        getShowDate();
-        getProcessAdd();
+        HienThiThoiGianBatDau();
+        HienThiThoiGianEnd();
+        HienThiNgay();
+        ThemDL();
         getShowListA();
     }
     public void getWidget(){
@@ -64,7 +64,7 @@ public class QualitySleepActivity extends AppCompatActivity {
         btnList = findViewById(R.id.btnList);
         qualitySleepDAO = new QualitySleepDAO(this);
     }
-    public void getShowDate(){
+    public void HienThiNgay(){
         imgDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,18 +90,18 @@ public class QualitySleepActivity extends AppCompatActivity {
                     }
                 },year,month,dayOfMonth);
 
-                //Hiển thị Dialog
                 datePickerDialog.show();
             }
         });
     }
-    // Phương thức để lấy ngày hiện tại
-    private String getCurrentDate() {
+
+
+    private String LayNgayHienTai() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date currentDate = new Date(System.currentTimeMillis());
         return dateFormat.format(currentDate);
     }
-    public void getShowTimeStart(){
+    public void HienThiThoiGianBatDau(){
         imgStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,7 +129,7 @@ public class QualitySleepActivity extends AppCompatActivity {
             }
         });
     }
-    public void getShowTimeFinish() {
+    public void HienThiThoiGianEnd() {
         imgFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -157,7 +157,7 @@ public class QualitySleepActivity extends AppCompatActivity {
             }
         });
     }
-    public void getProcessAdd(){
+    public void ThemDL(){
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,16 +171,16 @@ public class QualitySleepActivity extends AppCompatActivity {
                 }
                 // Kiểm tra nếu tvDate trống rỗng, gán giá trị là ngày hiện tại
                 if (createdDate == null || createdDate.isEmpty()) {
-                    createdDate = getCurrentDate();
+                    createdDate = LayNgayHienTai();
                 }
 
                 Profile profile = profileDAO.getProfile();
                 String dateOfBirth = profile.getDob();
-                int age = calculateAge(dateOfBirth);
-                float sleepDuration = calculateSleepDurationInHours(startSleep, finishSleep);
+                int age = TinhTuoi(dateOfBirth);
+                float sleepDuration = TinhThoiGianNgu(startSleep, finishSleep);
                 if (sleepDuration != -1) {
                   // Tính toán trạng thái giấc ngủ
-                    status = getStatusFromAgeGroup(sleepDuration);
+                    status = XacDinhTrangThaiTuNhomTuoi(sleepDuration);
                     // Tạo đối tượng QualitySleep
                     QualitySleep qualitySleep = new QualitySleep(startSleep,finishSleep,status,createdDate);
 
@@ -224,12 +224,12 @@ public class QualitySleepActivity extends AppCompatActivity {
 
     }
 
-    private float calculateSleepDurationInHours(String startSleep, String finishSleep) {
+    private float TinhThoiGianNgu(String startSleep, String finishSleep) {
         try {
-            // Định dạng để chuyển đổi chuỗi thành đối tượng Date
+            // Định dạng
             SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
-            // Chuyển đổi thời gian bắt đầu và kết thúc thành đối tượng Date
+            // Chuyển đổi thời gian
             Date startTime = format.parse(startSleep);
             Date finishTime = format.parse(finishSleep);
 
@@ -253,7 +253,8 @@ public class QualitySleepActivity extends AppCompatActivity {
             return -1; // hoặc có thể trả về giá trị khác để biểu thị lỗi
         }
     }
-    private int calculateAge(String dateOfBirth) {
+
+    private int TinhTuoi(String dateOfBirth) {
                     try {
                         if(dateOfBirth != null && !dateOfBirth.isEmpty()) {
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -279,7 +280,7 @@ public class QualitySleepActivity extends AppCompatActivity {
             return -1;
         }
     }
-    public String getStatusFromAgeGroup(float sleepDuration) {
+    public String XacDinhTrangThaiTuNhomTuoi(float sleepDuration) {
         String ageGroup = profileDAO.getAgeGroup();
         if (ageGroup.equals("Trẻ em")) {
             return evaluateSleepStatusForYoungChildren(sleepDuration);
@@ -328,17 +329,19 @@ public class QualitySleepActivity extends AppCompatActivity {
             }
         });
     }
+
     public void back(View v){
         finish();
     }
+
     private void showAdviceDialog(String status, float sleepDuration, int minHours, int maxHours) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Lời khuyên về giấc ngủ");
 
         if (status.equals("Ngủ quá nhiều")) {
-            builder.setMessage("Bạn ngủ quá nhiều. Cần giảm thời gian ngủ " + calHours(sleepDuration - maxHours) + " để tốt cho sức khỏe.");
+            builder.setMessage("Bạn ngủ quá nhiều. Cần giảm thời gian ngủ " + calHours(sleepDuration - maxHours) + ".");
         } else if (status.equals("Ngủ ít")) {
-            builder.setMessage("Bạn không ngủ đủ giấc. Cần tăng thời gian ngủ " + calHours(minHours - sleepDuration) + " để tốt cho sức khỏe.");
+            builder.setMessage("Bạn không ngủ đủ giấc. Cần tăng thời gian ngủ " + calHours(minHours - sleepDuration) + ".");
         } else {
             return;
         }
@@ -352,6 +355,7 @@ public class QualitySleepActivity extends AppCompatActivity {
 
         builder.show();
     }
+
     private String calHours(float time){
         int hour = (int) time;
         int minute = Math.round((time - hour) * 60);

@@ -36,10 +36,10 @@ import aaa.exe.nhom_12_chuong_trinh_android.main.model.RemindWater;
 import aaa.exe.nhom_12_chuong_trinh_android.main.receiver.ReminderReceiver;
 
 public class RemindWaterActivity extends AppCompatActivity {
-    TextView tvTarget;
-    ProgressBar progressDrinkW;
+    TextView tvTarget; //luong nuoc
+    ProgressBar ctrUongNuoc;
 
-    ListView lvWater;
+    ListView dsNuoc;
 
     ImageButton imgCreate, imgUpdate;
 
@@ -56,10 +56,12 @@ public class RemindWaterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nct_activity_remind_water);
         getWidget();
-        startNewDay();
+        startNewDay(); // dat thoi diem bat dau la thoi diem hien tai
         updateTvTarget();
+
         // Tự động đặt lịch nhắc nhở khi Activity được tạo
-        autoReminder();
+        ktraLuongNuoc();
+
         imgCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,10 +71,10 @@ public class RemindWaterActivity extends AppCompatActivity {
         imgUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showUpdateFrequencyDialog();
+                NhapTanSuat();
             }
         });
-        lvWater.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        dsNuoc.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
                 remove(position);
@@ -84,8 +86,8 @@ public class RemindWaterActivity extends AppCompatActivity {
     public void getWidget() {
         remindWaterDAO = new RemindWaterDAO(this);
         tvTarget = findViewById(R.id.tvTarget);
-        progressDrinkW = findViewById(R.id.progressDrinkW);
-        lvWater = findViewById(R.id.lvWater);
+        ctrUongNuoc = findViewById(R.id.progressDrinkW);
+        dsNuoc  = findViewById(R.id.lvWater);
         imgCreate = findViewById(R.id.imgCreate);
         imgUpdate = findViewById(R.id.imgUpdate);
         user_id = remindWaterDAO.getUser_id();
@@ -97,15 +99,16 @@ public class RemindWaterActivity extends AppCompatActivity {
 
         list = remindWaterDAO.getAllInDay(getCurrentDate());
         arrayAdapter = new RemindWaterAdapter(context, list);
-        lvWater.setAdapter(arrayAdapter);
+        dsNuoc.setAdapter(arrayAdapter);
 
-        int totalConsumed = getTotalConsumed(); // Hàm này cần được triển khai để tính tổng lượng nước đã uống
+        int totalConsumed = TinhTongNuoc(); // Hàm này cần được triển khai để tính tổng lượng nước đã uống
         float target = calculateTarget();
-        progressDrinkW.setMax((int) target);
-        progressDrinkW.setProgress(totalConsumed);
+        ctrUongNuoc.setMax((int) target);
+        ctrUongNuoc.setProgress(totalConsumed);
     }
 
-    private void autoReminder() {
+    
+    private void ktraLuongNuoc() {
         // Lấy dữ liệu từ cơ sở dữ liệu
         float frequency = remindWaterDAO.getFrequencyFromDatabase();
 
@@ -113,25 +116,25 @@ public class RemindWaterActivity extends AppCompatActivity {
             // Tính toán thời gian giữa mỗi lần nhắc nhở (đơn vị: milliseconds)
             long reminderInterval = (long) (frequency * 60 * 1000); // Chuyển đổi phút thành milliseconds
 
-            int totalConsumed = getTotalConsumed();
+            int totalConsumed = TinhTongNuoc();
             float target = calculateTarget();
             Log.d("Nhắc nhở gỡ lỗi", "Tổng số đã uống: " + totalConsumed);
             Log.d("Nhắc nhở gỡ lỗi", "tiêu thụ: " + target);
             if (totalConsumed < target) {
                 // Đặt lịch nhắc nhở sử dụng AlarmManager
-                scheduleReminder(reminderInterval);
+                DatLichReminder(reminderInterval);
             } else {
                 // Nếu totalConsumed >= target, hủy bỏ lịch nhắc nhở
-                cancelReminder();
+                HuyReminder();
             }
         }
     }
 
-    private void scheduleReminder(long interval) {
+    private void DatLichReminder(long interval) {
         // Sử dụng AlarmManager để đặt lịch nhắc nhở
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        int totalConsumed = getTotalConsumed();
+        int totalConsumed = TinhTongNuoc();
         float target = calculateTarget();
 
         int remain = (int) (target - totalConsumed);
@@ -158,7 +161,7 @@ public class RemindWaterActivity extends AppCompatActivity {
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + interval, interval, pendingIntent);
     }
 
-    private void cancelReminder() {
+    private void HuyReminder() {
         Intent intent = new Intent(RemindWaterActivity.this, ReminderReceiver.class);
         intent.setAction("MyAction");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -170,7 +173,7 @@ public class RemindWaterActivity extends AppCompatActivity {
         pendingIntent.cancel();
     }
 
-    private void showUpdateFrequencyDialog() {
+    private void NhapTanSuat() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Tần suất cập nhật");
 
@@ -190,19 +193,15 @@ public class RemindWaterActivity extends AppCompatActivity {
                     float frequency = Float.parseFloat(frequencyStr);
 
                     // Cập nhật giá trị trong CSDL
-                    updateFrequency(frequency);
-
-                    autoReminder();
-
+                    CapNhatTanSuat(frequency);
+                    ktraLuongNuoc();
                     // Cập nhật giao diện
                     updateUI();
-
                     // Thông báo sau khi tạo chuông thành công
                     Toast.makeText(context, "Bạn đã tạo chuông với tần suất " + frequency + " phút", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
         builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -229,7 +228,7 @@ public class RemindWaterActivity extends AppCompatActivity {
         }
     }
 
-    private void updateFrequency(float frequency) {
+    private void CapNhatTanSuat(float frequency) {
         remindWaterDAO.updateFrequency( frequency);
     }
     private void showAddWaterDialog() {
@@ -276,7 +275,7 @@ public class RemindWaterActivity extends AppCompatActivity {
         String date = getCurrentDate();
         RemindWater remindWater = new RemindWater(amount,2,time,date,user_id);
         remindWaterDAO.insert(remindWater);
-        autoReminder();
+        ktraLuongNuoc();
     }
 
     private void updateUI() {
@@ -292,14 +291,16 @@ public class RemindWaterActivity extends AppCompatActivity {
         list = remindWaterDAO.getAllInDay(getCurrentDate());
 
         arrayAdapter = new RemindWaterAdapter(context,list);
-        lvWater.setAdapter(arrayAdapter);
+        dsNuoc.setAdapter(arrayAdapter);
     }
+
     // Phương thức để lấy ngày hiện tại
     private String getCurrentDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate currentDate = LocalDate.now();
         return currentDate.format(formatter);
     }
+
     private float calculateTarget() {
         // Lấy giá trị cân nặng từ CSDL
         float weight = getWeightFromDatabase();
@@ -319,7 +320,7 @@ public class RemindWaterActivity extends AppCompatActivity {
     }
     @SuppressLint("DefaultLocale")
     private void updateTvTarget() {
-        int totalConsumed = getTotalConsumed();
+        int totalConsumed = TinhTongNuoc();
         float target = calculateTarget();
 
         // Tính toán giá trị cần hiển thị trong edtTarget
@@ -328,14 +329,17 @@ public class RemindWaterActivity extends AppCompatActivity {
         // Hiển thị giá trị trong edtTarget
         tvTarget.setText(String.format("%d/%.0f ml", totalConsumed, target));
     }
+
+    // cap nhat tien trinh
     private void updateProgressBar() {
-        int totalConsumed = getTotalConsumed(); // Hàm này cần được triển khai để tính tổng lượng nước đã uống
+        int totalConsumed = TinhTongNuoc(); // Hàm này cần được triển khai để tính tổng lượng nước đã uống
         float target = calculateTarget();
-        ProgressBar progressDrinkW = findViewById(R.id.progressDrinkW);
-        progressDrinkW.setMax((int)target);
-        progressDrinkW.setProgress(totalConsumed);
+        ProgressBar ctrUongNuoc = findViewById(R.id.progressDrinkW);
+        ctrUongNuoc.setMax((int)target);
+        ctrUongNuoc.setProgress(totalConsumed);
     }
-    private int getTotalConsumed() {
+
+    private int TinhTongNuoc() {
         // Triển khai hàm này để tính tổng lượng nước đã uống
         return remindWaterDAO.getTotalConsumed(); // Thay thế 0 bằng user_id thích hợp
     }
