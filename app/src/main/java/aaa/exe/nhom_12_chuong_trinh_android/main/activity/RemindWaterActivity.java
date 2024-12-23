@@ -316,6 +316,9 @@ public class RemindWaterActivity extends AppCompatActivity {
         if (Float.isNaN(weight) || weight <= 0) {
             return 66.6f;
         }
+        if (weight <= 0) {
+            throw new IllegalArgumentException("Cân nặng không hợp lệ!");
+        }
         return weight;
     }
     @SuppressLint("DefaultLocale")

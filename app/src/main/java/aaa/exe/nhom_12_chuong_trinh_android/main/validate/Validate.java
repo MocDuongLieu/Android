@@ -10,12 +10,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Validate {
-    public static void shakeEditText(EditText editText) {
+    public static void shakeEditText(EditText editText) { // tao rung cho editext loi
         Animation shake = new TranslateAnimation(0, 10, 0, 0);
         shake.setDuration(500);
         shake.setInterpolator(new CycleInterpolator(7));
         editText.startAnimation(shake);
     }
+    // ktra chuoi ko co chu so
     public static boolean containDigits(String str){
         for ( char c :str.toCharArray()){
             if(Character.isDigit(c)){
@@ -24,6 +25,7 @@ public class Validate {
         }
         return true;
     }
+
     public static boolean containsSpecialCharacters(String str) {
         String specialCharacters = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?";
 
@@ -35,6 +37,8 @@ public class Validate {
 
         return true;
     }
+
+    // check loi dinh dang ngay thang
     public static boolean validateDateFormat(String input) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
@@ -46,6 +50,8 @@ public class Validate {
             return false;
         }
     }
+
+    // kiem tra ngay lon hon
     public static boolean isDate1GreaterThanDate2(String date1, String date2) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {

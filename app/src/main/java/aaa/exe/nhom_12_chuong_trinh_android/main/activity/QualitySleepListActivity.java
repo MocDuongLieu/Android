@@ -38,7 +38,7 @@ public class QualitySleepListActivity extends AppCompatActivity {
         setContentView(R.layout.nct_activity_quality_sleep_list);
         getWidget();
         qualitySleepDAO = new QualitySleepDAO(this);
-        getSelectLV();
+        getSelectLV(); // chon dong dl - xoa
         backHome();
     }
     public void getWidget(){

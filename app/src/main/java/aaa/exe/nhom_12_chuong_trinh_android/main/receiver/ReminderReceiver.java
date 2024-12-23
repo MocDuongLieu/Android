@@ -44,11 +44,11 @@ public class ReminderReceiver extends BroadcastReceiver {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                     .setContentTitle("Nhắc nhở uống nước")
-                    .setContentText("Đến giờ bạn uống nước rồi.\nHôm nay bạn đã uống " + remain + " ml số lượng nước còn lại để uống.")
+                    .setContentText("Đến giờ bạn uống nước rồi.\nHôm nay bạn thiếu " + remain + " ml để đủ lượng nước trong ngày.")
                     .setSmallIcon(R.drawable.ic_notifications)
                     .setColor(Color.BLUE)
                     .setCategory(NotificationCompat.CATEGORY_ALARM)
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText("Đến giờ bạn uống nước rồi.\nHôm nay bạn đã có " + remain + " ml số lượng nước còn lại để uống."));
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText("Đến giờ bạn uống nước rồi.\nHôm nay bạn thiếu " + remain + " ml để đủ lượng nước trong ngày."));
 
             notificationManager.notify(getNotificationId(), builder.build());
         }

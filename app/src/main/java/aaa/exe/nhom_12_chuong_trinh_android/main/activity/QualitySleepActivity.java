@@ -244,9 +244,7 @@ public class QualitySleepActivity extends AppCompatActivity {
             // Tính toán thời lượng giấc ngủ (đơn vị: giờ)
             long durationInMillis = finishTime.getTime() - startTime.getTime();
             float durationInHours = durationInMillis / (60 * 60 * 1000f);
-
             return durationInHours;
-
         } catch (ParseException e) {
             // Xử lý ngoại lệ nếu có lỗi khi chuyển đổi thời gian
             e.printStackTrace();
@@ -280,6 +278,7 @@ public class QualitySleepActivity extends AppCompatActivity {
             return -1;
         }
     }
+
     public String XacDinhTrangThaiTuNhomTuoi(float sleepDuration) {
         String ageGroup = profileDAO.getAgeGroup();
         if (ageGroup.equals("Trẻ em")) {
@@ -304,18 +303,27 @@ public class QualitySleepActivity extends AppCompatActivity {
             return "Ngủ ít";
         }
     }
+
+
+    // tre nho
     private String evaluateSleepStatusForYoungChildren(float sleepDuration){
         return evaluateSleepStatus(sleepDuration, 10, 12);
     }
+
+    // tre em 6 - 12
     private String evaluateSleepStatusForChildren(float sleepDuration){
         return evaluateSleepStatus(sleepDuration, 9, 11);
     }
+    // thanh thieu nien 13 - 17
     private String evaluateSleepStatusForTeens(float sleepDuration){
         return evaluateSleepStatus(sleepDuration, 8, 10);
     }
+
+    // nguoi lon 18 - 64
     private String evaluateSleepStatusForAdults(float sleepDuration){
         return evaluateSleepStatus(sleepDuration, 7, 9);
     }
+    // ng cao tuoi
     private String evaluateSleepStatusForSeniors(float sleepDuration){
         return evaluateSleepStatus(sleepDuration, 7, 8);
     }
