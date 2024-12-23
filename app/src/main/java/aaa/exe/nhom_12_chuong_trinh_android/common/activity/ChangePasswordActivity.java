@@ -1,5 +1,6 @@
 package aaa.exe.nhom_12_chuong_trinh_android.common.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MotionEvent;
@@ -20,6 +21,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     boolean isPasswordVisible = false;
     boolean isPasswordVisible1 = false;
     boolean isPasswordVisible2 = false;
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +93,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 return false;
             }
         });
+
     }
     public void ax(){
         userDAO = new UserDAO(this);
@@ -106,15 +109,18 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }
         });
     }
+    //Thay doi matkhau
     public void change(){
         String email = editEmail.getText().toString();
         String oldPassword = editOldPassword.getText().toString();
         String newPassword = editNewPassword.getText().toString();
         String confirmPassword = editConfirm.getText().toString();
+        //Validate dieu kien
         if(!isValidPassword(newPassword)){
             Toast.makeText(this, "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ cái viết hoa, chữ cái thường, số và ký tự đặc biệt", Toast.LENGTH_SHORT).show();
             return;
         }
+        //So sanh mat khau moi
         if (!isConfirm(newPassword, confirmPassword)) {
             Toast.makeText(this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
             return;

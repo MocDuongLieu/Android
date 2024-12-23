@@ -123,11 +123,11 @@ public class CaloriesActivity extends AppCompatActivity {
         String gender = profile.getSex();
         if (ageGroup.equals("Trẻ em")) {
             return evaluateCaloriesStatusForYoungChildren(intake, gender);
-        } else if (ageGroup.equals("Vị thành niên")) {
-            return evaluateCaloriesStatusForChildren(intake, gender);
         } else if (ageGroup.equals("Thanh niên")) {
+            return evaluateCaloriesStatusForChildren(intake, gender);
+        } else if (ageGroup.equals("Thanh thiếu niên")) {
             return evaluateCaloriesStatusForTeens(intake, gender);
-        } else if (ageGroup.equals("Trưởng thành") || ageGroup.equals("Trung niên")) {
+        } else if (ageGroup.equals("Vị thành niên") || ageGroup.equals("Trung niên")) {
             return evaluateCaloriesStatusForAdultsAndMiddleAge(intake, gender, priorityDisease);
         } else if (ageGroup.equals("Người già")) {
             return evaluateCaloriesStatusForSeniors(intake, gender, priorityDisease);

@@ -175,11 +175,11 @@ public class ProfileDAO {
         if (age < 6) {
             return "Trẻ em";
         } else if (age >= 6 && age <=13) {
-            return "Vị thành niên";
-        } else if (age >= 14 && age <= 17) {
             return "Thanh niên";
+        } else if (age >= 14 && age <= 17) {
+            return "Thanh thiếu niên";
         }else if (age >= 18 && age <= 40) {
-            return "Trưởng thành";
+            return "Vị thành niên";
         }else if (age > 40 && age <= 64) {
             return "Trung niên";
         } else {
