@@ -97,7 +97,7 @@ public class CaloriesActivity extends AppCompatActivity {
             }
         }
     }
-
+    //Kiem tra dieu kien nhap kcal
     public boolean validateKcalBurned(float burned) {
         if (burned < 500) {
             return false;
@@ -121,6 +121,7 @@ public class CaloriesActivity extends AppCompatActivity {
         String ageGroup = profileDAO.getAgeGroup();
         Profile profile = profileDAO.getProfile();
         String gender = profile.getSex();
+        //Tim ra nhom tuoi tuong ung de su dung phuong thuc danh gia kcal theo tung nhom tuoi
         if (ageGroup.equals("Trẻ em")) {
             return evaluateCaloriesStatusForYoungChildren(intake, gender);
         } else if (ageGroup.equals("Thanh niên")) {
@@ -235,7 +236,7 @@ public class CaloriesActivity extends AppCompatActivity {
             }
         }
     }
-
+    //Lay thoi gian mac dinh hom nay
     public String getCurrentDateAsString() {
         Calendar calendar = Calendar.getInstance();
         Date currentDate = calendar.getTime();
@@ -243,7 +244,7 @@ public class CaloriesActivity extends AppCompatActivity {
         String dateString = dateFormat.format(currentDate);
         return dateString;
     }
-
+    //Hien thi datePicker
     public void showDatePicker() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -259,7 +260,7 @@ public class CaloriesActivity extends AppCompatActivity {
         datePickerDialog.setTitle("Chọn ngày giờ");
         datePickerDialog.show();
     }
-
+    //Hanh dong
     public class doSomeThing implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -274,11 +275,11 @@ public class CaloriesActivity extends AppCompatActivity {
             }
         }
     }
-
+    //Ket thuc hoat dong
     public void back(View v) {
         finish();
     }
-
+    //Thong bao loi khuyen
     private void showAdviceDialog(String status, float intake, float burned) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Lời khuyên về calo");

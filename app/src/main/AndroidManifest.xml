@@ -75,7 +75,7 @@
             android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.HealthStatisticActivity"
             android:exported="false"></activity>
         <activity
-            android:name="aaa.exe.nhom_12_chuong_trinh_android.common.activity.ChangePasswordActivity"
+            android:name="aaa.exe.nhom_12_chuong_trinh_android.main.activity.ChangePasswordActivity"
             android:exported="false"></activity>
         <activity
             android:name="aaa.exe.nhom_12_chuong_trinh_android.main.statistic.HeartHealthStatisticActivity"

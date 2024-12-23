@@ -1,4 +1,4 @@
-package aaa.exe.nhom_12_chuong_trinh_android.common.activity;
+package aaa.exe.nhom_12_chuong_trinh_android.main.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
