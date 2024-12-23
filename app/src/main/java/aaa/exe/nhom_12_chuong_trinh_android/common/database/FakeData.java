@@ -2,7 +2,7 @@ package aaa.exe.nhom_12_chuong_trinh_android.common.database;
 
 public class FakeData {
     public static final String INSERT_USER = "insert into user(user_name, email,user_password) values" +
-            "('Admin123','admin1@gmail.com','Password@')";
+            "('Admin123','admin1@gmail.com','Password@123')";
     public static final String INSERT_PROFILE = "insert into profile(profile_id, user_id,full_name,date_of_birth,sex,diseases) values" +
             "('1','1','Nguyen Thi Sen','2003-11-28','Nữ','Huyết áp cao, Tiểu đường.')";
     public static final String INSERT_HEART_HEALTH = "insert into heart_health(heartbeat, heart_pressure,status,created_date,user_id) values" +
