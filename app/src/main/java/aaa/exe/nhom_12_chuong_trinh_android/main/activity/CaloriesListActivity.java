@@ -38,7 +38,6 @@ public class CaloriesListActivity extends AppCompatActivity {
     }
     public void getWidget(){
         caloriesDAO = new CaloriesDAO(this);
-
         btnHome = findViewById(R.id.btnHome);
         btnRemove = findViewById(R.id.btnRemove);
         btnHome.setOnClickListener(new doSomeThing());
@@ -91,7 +90,7 @@ public class CaloriesListActivity extends AppCompatActivity {
                             .setMessage("Bạn có muốn xóa mục này không?")
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // Gọi phương thức xóa từ QualitySleepDAO để xóa dữ liệu từ cơ sở dữ liệu
+                                    // Gọi phương thức xóa từ caloriesDAO để xóa dữ liệu từ cơ sở dữ liệu
                                     int result = (int) caloriesDAO.delete(String.valueOf(selectedCalories.getCalories_id()));
 
                                     if (result > 0) {

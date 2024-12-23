@@ -239,7 +239,9 @@ public class CaloriesActivity extends AppCompatActivity {
     //Lay thoi gian mac dinh hom nay
     public String getCurrentDateAsString() {
         Calendar calendar = Calendar.getInstance();
+        //Lay thoi gian hien tai
         Date currentDate = calendar.getTime();
+        //Dinh dang chuoi thanh date year-month-day
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String dateString = dateFormat.format(currentDate);
         return dateString;
@@ -250,12 +252,14 @@ public class CaloriesActivity extends AppCompatActivity {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
+        //Set gia tri len Textview
         DatePickerDialog.OnDateSetListener callback = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 txtDate.setText(i + "-" + (i1 + 1) + "-" + i2);
             }
         };
+        //Khoi tao mot datePickerDialog
         DatePickerDialog datePickerDialog = new DatePickerDialog(CaloriesActivity.this, callback, year, month, day);
         datePickerDialog.setTitle("Chọn ngày giờ");
         datePickerDialog.show();

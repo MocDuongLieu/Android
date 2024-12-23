@@ -26,18 +26,23 @@ public class ChangePasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cm_activity_change_password);
-        ax();
+        getWidget();
         editOldPassword.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if(motionEvent.getAction() == MotionEvent.ACTION_UP){
                     if(motionEvent.getRawX() >= (editOldPassword.getRight() - editOldPassword.getCompoundDrawables()[2].getBounds().width())){
+                        //Trang thai cua icon (mat dong -> mat mo)
                         isPasswordVisible = !isPasswordVisible;
                         if (isPasswordVisible) {
+                            //Thay doi loai nhap lieu cua password
                             editOldPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            //Sua icon dong -> mo
                             editOldPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_open, 0); // Icon mắt mở
                         } else {
+                            //Thay doi loai nhap lieu de an mat khau
                             editOldPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            //Sua icon mo -> dong
                             editOldPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_close, 0); // Icon mắt đóng
                         }
 
@@ -95,7 +100,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         });
 
     }
-    public void ax(){
+    public void getWidget(){
         userDAO = new UserDAO(this);
         editEmail = findViewById(R.id.editEmail);
         editOldPassword = findViewById(R.id.editOldPass);
