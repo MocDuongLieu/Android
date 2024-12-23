@@ -42,7 +42,7 @@
     <ListView
         android:id="@+id/lvCalories"
         android:layout_width="match_parent"
-        android:layout_height="517dp" />
+        android:layout_height="488dp" />
 
     <TableRow
         android:layout_width="match_parent"

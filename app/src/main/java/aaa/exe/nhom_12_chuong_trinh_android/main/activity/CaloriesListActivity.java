@@ -85,7 +85,6 @@ public class CaloriesListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (selectedPosition != ListView.INVALID_POSITION) {
                     Calories selectedCalories = list.get(selectedPosition);
-
                     // Hiển thị AlertDialog để xác nhận việc xóa
                     new AlertDialog.Builder(context)
                             .setTitle("Xác nhận xóa")
