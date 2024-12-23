@@ -176,7 +176,7 @@ public class CaloriesActivity extends AppCompatActivity {
         }
     }
 
-    //Danh gia calo cho vi thanh nien theo tung gioi tinh
+    //Danh gia calo cho thanh nien theo tung gioi tinh
     private String evaluateCaloriesStatusForChildren(float intake, String gender) {
         if (gender.equals("Nam")) {
             return evaluateCaloriesStatus(intake, 1600, 2200);
@@ -185,7 +185,7 @@ public class CaloriesActivity extends AppCompatActivity {
         }
     }
 
-    //Danh gia calo cho thanh nien theo tung gioi tinh
+    //Danh gia calo cho thanh thieu nien theo tung gioi tinh
     private String evaluateCaloriesStatusForTeens(float intake, String gender) {
         if (gender.equals("Nam")) {
             return evaluateCaloriesStatus(intake, 2200, 3000);
@@ -194,7 +194,7 @@ public class CaloriesActivity extends AppCompatActivity {
         }
     }
 
-    //Danh gia calo cho nguoi truong thanh va tuoi trung nien dua theo tung gioi tinh kem benh nen (neu co)
+    //Danh gia calo cho nguoi vi thanh nien va tuoi trung nien dua theo tung gioi tinh kem benh nen (neu co)
     private String evaluateCaloriesStatusForAdultsAndMiddleAge(float intake, String gender, String disease) {
         if (gender.equals("Nam")) {
             if (disease.equals("Tiểu đường")) {
