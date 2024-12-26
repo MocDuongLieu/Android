@@ -303,7 +303,27 @@ public class QualitySleepActivity extends AppCompatActivity {
             return "Ngủ ít";
         }
     }
+    private void showAdviceDialog(String status, float sleepDuration, int minHours, int maxHours) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Lời khuyên về giấc ngủ");
 
+        if (status.equals("Ngủ quá nhiều")) {
+            builder.setMessage("Bạn ngủ quá nhiều. Cần giảm thời gian ngủ " + calHours(sleepDuration - maxHours) + ".");
+        } else if (status.equals("Ngủ ít")) {
+            builder.setMessage("Bạn không ngủ đủ giấc. Cần tăng thời gian ngủ " + calHours(minHours - sleepDuration) + ".");
+        } else {
+            return;
+        }
+
+        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    }
 
     // tre nho
     private String evaluateSleepStatusForYoungChildren(float sleepDuration){
@@ -342,27 +362,7 @@ public class QualitySleepActivity extends AppCompatActivity {
         finish();
     }
 
-    private void showAdviceDialog(String status, float sleepDuration, int minHours, int maxHours) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Lời khuyên về giấc ngủ");
 
-        if (status.equals("Ngủ quá nhiều")) {
-            builder.setMessage("Bạn ngủ quá nhiều. Cần giảm thời gian ngủ " + calHours(sleepDuration - maxHours) + ".");
-        } else if (status.equals("Ngủ ít")) {
-            builder.setMessage("Bạn không ngủ đủ giấc. Cần tăng thời gian ngủ " + calHours(minHours - sleepDuration) + ".");
-        } else {
-            return;
-        }
-
-        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        builder.show();
-    }
 
     private String calHours(float time){
         int hour = (int) time;
