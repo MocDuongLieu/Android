@@ -1,5 +1,6 @@
 package aaa.exe.nhom_12_chuong_trinh_android.common.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MotionEvent;
@@ -20,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     UserDAO userDAO;
     boolean isPasswordVisible = false;
     boolean isPasswordVisible1 = false;
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,5 +1,6 @@
 package aaa.exe.nhom_12_chuong_trinh_android.common.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -22,23 +23,12 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtUserName, edtPassword;
     UserDAO userDAO;
     boolean isPasswordVisible = false;
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cm_activity_login);
         getWidget();
-    }
-    public void getWidget(){
-        btnLogin = findViewById(R.id.btnLogin);
-        edtPassword = findViewById(R.id.edtPassword);
-        edtUserName = findViewById(R.id.edtUserName);
-        userDAO = new UserDAO(this);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                login();
-            }
-        });
         edtPassword.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -61,6 +51,19 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    public void getWidget(){
+        btnLogin = findViewById(R.id.btnLogin);
+        edtPassword = findViewById(R.id.edtPassword);
+        edtUserName = findViewById(R.id.edtUserName);
+        userDAO = new UserDAO(this);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login();
+            }
+        });
+
     }
 
     private void login(){

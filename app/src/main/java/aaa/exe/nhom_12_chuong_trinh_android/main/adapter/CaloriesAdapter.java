@@ -23,7 +23,7 @@ public class CaloriesAdapter extends ArrayAdapter<Calories> {
         super(context, 0, caloriesList);
         this.context = context;
     }
-
+    //Tao giao dien
     public View getView(int position, @Nullable View convertView,
                         @NonNull ViewGroup parent) {
         if (convertView == null) {

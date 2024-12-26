@@ -19,6 +19,7 @@ import aaa.exe.nhom_12_chuong_trinh_android.R;
 import aaa.exe.nhom_12_chuong_trinh_android.common.objects.UserSession;
 import aaa.exe.nhom_12_chuong_trinh_android.main.activity.BMIIndexActivity;
 import aaa.exe.nhom_12_chuong_trinh_android.main.activity.CaloriesActivity;
+import aaa.exe.nhom_12_chuong_trinh_android.main.activity.ChangePasswordActivity;
 import aaa.exe.nhom_12_chuong_trinh_android.main.activity.ExercisePlanActivity;
 import aaa.exe.nhom_12_chuong_trinh_android.main.activity.HealthStatisticActivity;
 import aaa.exe.nhom_12_chuong_trinh_android.main.activity.HeartHealthActivity;

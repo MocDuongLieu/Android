@@ -38,7 +38,7 @@ public class QualitySleepUnitTest {
         // Thiết lập các giá trị trả về của ProfileDAO
         when(profileDAO.getAgeGroup()).thenReturn("Trẻ em");
 
-        String result = qualitySleepActivity.getStatusFromAgeGroup(11.0f);
+        String result = qualitySleepActivity.XacDinhTrangThaiTuNhomTuoi(11.0f);
 
         // Kiểm tra kết quả trả về
         assertEquals("Đủ", result);
@@ -49,7 +49,7 @@ public class QualitySleepUnitTest {
         // Thiết lập các giá trị trả về của ProfileDAO
         when(profileDAO.getAgeGroup()).thenReturn("Thanh niên");
 
-        String result = qualitySleepActivity.getStatusFromAgeGroup(8.0f);
+        String result = qualitySleepActivity.XacDinhTrangThaiTuNhomTuoi(8.0f);
 
         // Kiểm tra kết quả trả về
         assertEquals("Ngủ ít", result);
@@ -60,7 +60,7 @@ public class QualitySleepUnitTest {
         // Thiết lập các giá trị trả về của ProfileDAO
         when(profileDAO.getAgeGroup()).thenReturn("Thanh thiếu niên");
 
-        String result = qualitySleepActivity.getStatusFromAgeGroup(11.0f);
+        String result = qualitySleepActivity.XacDinhTrangThaiTuNhomTuoi(11.0f);
 
         // Kiểm tra kết quả trả về
         assertEquals("Ngủ quá nhiều", result);
@@ -71,7 +71,7 @@ public class QualitySleepUnitTest {
         // Thiết lập các giá trị trả về của ProfileDAO
         when(profileDAO.getAgeGroup()).thenReturn("Vị thành niên");
 
-        String result = qualitySleepActivity.getStatusFromAgeGroup(8.0f);
+        String result = qualitySleepActivity.XacDinhTrangThaiTuNhomTuoi(8.0f);
 
         // Kiểm tra kết quả trả về
         assertEquals("Đủ", result);
@@ -82,7 +82,7 @@ public class QualitySleepUnitTest {
         // Thiết lập các giá trị trả về của ProfileDAO
         when(profileDAO.getAgeGroup()).thenReturn("Người già");
 
-        String result = qualitySleepActivity.getStatusFromAgeGroup(6.0f);
+        String result = qualitySleepActivity.XacDinhTrangThaiTuNhomTuoi(6.0f);
 
         // Kiểm tra kết quả trả về
         assertEquals("Ngủ ít", result);
